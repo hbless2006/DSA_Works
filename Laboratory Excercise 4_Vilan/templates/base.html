@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+        My Portfolio
+        {% endblock %}
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+    <nav class="navbar">
+
+        <a class="brand"
+           href="{{ url_for('index') }}">
+            My Portfolio
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('index') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('profile') }}">
+                Profile
+            </a>
+
+            <a href="{{ url_for('works') }}">
+                Works
+            </a>
+
+            <a href="{{ url_for('contact') }}">
+                Contact
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <main class="container">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            Laboratory Exercise 4 | My Portfolio
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

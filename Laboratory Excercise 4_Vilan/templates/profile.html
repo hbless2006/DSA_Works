@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+My Profile
+{% endblock %}
+
+
+{% block content %}
+
+<section class="profile-card">
+
+    <img
+        src="{{ url_for('static', filename='profile.jpg') }}"
+        alt="My Profile Picture"
+        class="profile-image"
+    >
+
+
+    <p class="small-title">
+        ABOUT ME
+    </p>
+
+
+    <h1>
+        My Profile
+    </h1>
+
+
+    <h2>
+        Hercy Bless C. Vilan
+    </h2>
+
+
+    <p>
+        Hello! My name is Hercy Bless C. Vilan
+        from BSCPE 2-3. I am a second year student
+        at the Polytechnic University of the Philippines.
+    </p>
+
+
+    <h3>
+        My Course
+    </h3>
+
+    <p>
+        Bachelor of Science in Computer Engineering
+    </p>
+
+
+    <h3>
+        My Skills
+    </h3>
+
+    <ul>
+
+        <li>Crafting</li>
+        <li>Designing</li>
+        <li>Basic Python</li>
+        <li>Graphics Design</li>
+        <li>Gaming</li>
+
+    </ul>
+
+
+    <h3>
+        My Goal
+    </h3>
+
+    <p>
+        My goal is to improve my programming skills
+        and create useful and user-friendly
+        applications.
+    </p>
+
+</section>
+
+{% endblock %}

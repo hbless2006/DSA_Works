@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}
+Circle Area
+{% endblock %}
+
+{% block content %}
+
+<section class="card">
+
+    <p class="small-title">
+        AREA CALCULATOR
+    </p>
+
+    <h1>
+        Circle Area
+    </h1>
+
+    <p>
+        Enter the radius of the circle to calculate its area.
+    </p>
+
+    <form method="POST">
+
+        <label for="radius">
+            Radius:
+        </label>
+
+        <input
+            type="number"
+            id="radius"
+            name="radius"
+            step="any"
+            min="0"
+            placeholder="Enter radius"
+            required
+        >
+
+        <button type="submit">
+            Calculate Area
+        </button>
+
+    </form>
+
+
+    {% if result is not none %}
+
+    <div class="result">
+
+        <h3>
+            Result
+        </h3>
+
+        <p>
+            The area of the circle is
+            <strong>{{ "%.2f"|format(result) }}</strong>
+            square units.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+
+    {% if error %}
+
+    <div class="error">
+        {{ error }}
+    </div>
+
+    {% endif %}
+
+
+    <a href="{{ url_for('works') }}" class="back-link">
+        ← Back to Works
+    </a>
+
+</section>
+
+{% endblock %}

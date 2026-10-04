@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <p class="small-title">
+        WELCOME TO MY PORTFOLIO
+    </p>
+
+    <h1>
+        Hello! I am Hercy Bless C. Vilan
+    </h1>
+
+    <h2>
+        BSCPE 2-3
+    </h2>
+
+    <p>
+        Welcome to my personal portfolio website.
+        This website was created for my Flask
+        Laboratory Exercise 4.
+    </p>
+
+    <a href="{{ url_for('profile') }}" class="button">
+        View My Profile
+    </a>
+
+</section>
+
+<section class="card">
+
+    <h2>
+        What is this website?
+    </h2>
+
+    <p>
+        This portfolio demonstrates my knowledge
+        of Python, Flask, HTML, CSS, programming
+        functions, area calculations, and
+        data structures.
+    </p>
+
+</section>
+
+{% endblock %}

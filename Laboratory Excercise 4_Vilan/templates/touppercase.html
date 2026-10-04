@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Works
+{% endblock %}
+
+
+{% block content %}
+
+<section class="card">
+
+    <p class="small-title">
+        PROGRAMMING WORK
+    </p>
+
+
+    <h1>
+        Convert Text to Uppercase
+    </h1>
+
+
+    <p>
+        Enter a word or sentence and convert it
+        into uppercase letters.
+    </p>
+
+
+    <form method="POST">
+
+        <input
+            type="text"
+            name="inputString"
+            placeholder="Enter text here"
+            required
+        >
+
+
+        <button type="submit">
+            Convert
+        </button>
+
+    </form>
+
+
+    {% if result is not none %}
+
+    <div class="result">
+
+        <h3>
+            Result
+        </h3>
+
+        <p>
+            {{ result }}
+        </p>
+
+    </div>
+
+    {% endif %}
+
+
+    <div class="work-links">
+
+        <a href="{{ url_for('acircle') }}">
+            Circle Area
+        </a>
+
+        <a href="{{ url_for('atriangle') }}">
+            Triangle Area
+        </a>
+
+        <a href="{{ url_for('linkedlist') }}">
+            Linked List
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

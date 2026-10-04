@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Linked List
+{% endblock %}
+
+
+{% block content %}
+
+<section class="linked-page">
+
+
+    <div class="linked-header">
+
+        <p class="small-title">
+            DATA STRUCTURES
+        </p>
+
+        <h1>
+            Linked List
+        </h1>
+
+        <p>
+            Add, delete, and manage nodes in a linked list.
+        </p>
+
+    </div>
+
+
+    <div class="linked-box">
+
+
+        <form method="POST">
+
+            <input
+                type="text"
+                name="value"
+                placeholder="Enter a value"
+                required
+            >
+
+
+            <div class="linked-buttons">
+
+                <button
+                    type="submit"
+                    name="action"
+                    value="add"
+                >
+                    Add Node
+                </button>
+
+
+                <button
+                    type="submit"
+                    name="action"
+                    value="delete"
+                >
+                    Delete Node
+                </button>
+
+
+                <button
+                    type="submit"
+                    name="action"
+                    value="clear"
+                >
+                    Clear List
+                </button>
+
+            </div>
+
+        </form>
+
+
+        {% if message %}
+
+        <div class="linked-message">
+
+            {{ message }}
+
+        </div>
+
+        {% endif %}
+
+
+        <h2>
+            Current Linked List
+        </h2>
+
+
+        {% if values %}
+
+        <div class="nodes">
+
+            {% for value in values %}
+
+            <div class="node">
+                {{ value }}
+            </div>
+
+
+            {% if not loop.last %}
+
+            <span class="arrow">
+                →
+            </span>
+
+            {% endif %}
+
+
+            {% endfor %}
+
+
+            <span class="arrow">
+                → NULL
+            </span>
+
+        </div>
+
+
+        {% else %}
+
+        <p class="empty-list">
+            The linked list is currently empty.
+        </p>
+
+        {% endif %}
+
+
+    </div>
+
+
+    <a
+        href="{{ url_for('works') }}"
+        class="back-link"
+    >
+        ← Back to Works
+    </a>
+
+
+</section>
+
+{% endblock %}
