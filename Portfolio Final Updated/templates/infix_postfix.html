@@ -1,0 +1,62 @@
+
+{% extends "base.html" %}
+
+{% block title %}Infix to Postfix{% endblock %}
+
+{% block content %}
+
+<section class="card project-page">
+
+    <p class="small-title">STACK DATA STRUCTURE</p>
+
+    <h1>Infix to Postfix</h1>
+
+    <p>
+        Enter an infix expression and convert it into postfix notation.
+    </p>
+
+    <form method="POST">
+
+        <label for="expression">Infix Expression</label>
+
+        <input
+            type="text"
+            id="expression"
+            name="expression"
+            placeholder="Example: A*(B+C)/D"
+            value="{{ expression }}"
+            required
+        >
+
+        <button type="submit">Convert Expression ✨</button>
+
+    </form>
+
+    {% if result is not none %}
+    <div class="result">
+        <h3>Conversion Successful!</h3>
+        <p><strong>Infix:</strong> {{ expression }}</p>
+        <p><strong>Postfix:</strong> {{ result }}</p>
+    </div>
+    {% endif %}
+
+    {% if error %}
+    <div class="error">
+        <strong>Error:</strong> {{ error }}
+    </div>
+    {% endif %}
+
+    <div class="examples">
+        <h3>Try These Examples</h3>
+        <p><code>(A+B+C)*D</code></p>
+        <p><code>A*(B+C)/D</code></p>
+        <p><code>A*(B+C^D)</code></p>
+    </div>
+
+    <a href="{{ url_for('works') }}" class="back-link">
+        ← Back to Works
+    </a>
+
+</section>
+
+{% endblock %}

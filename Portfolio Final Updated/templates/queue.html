@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Queue and Dequeue{% endblock %}
+
+{% block content %}
+
+<section class="linked-page">
+    <div class="linked-header">
+        <p class="small-title">DATA STRUCTURES</p>
+        <h1>Queue and Dequeue</h1>
+        <p>A queue follows first in, first out (FIFO): the first value added is the first one removed.</p>
+    </div>
+
+    <div class="linked-box">
+        <form method="POST">
+            <div class="linked-inputs">
+                <input type="text" name="value" placeholder="Value to enqueue">
+            </div>
+
+            <p class="input-hint">Add a value at the rear, or dequeue the value at the front.</p>
+
+            <div class="linked-buttons">
+                <button name="action" value="enqueue">Enqueue</button>
+                <button name="action" value="dequeue">Dequeue</button>
+                <button name="action" value="clear">Clear Queue</button>
+            </div>
+        </form>
+
+        {% if message %}
+        <div class="linked-message">{{ message }}</div>
+        {% endif %}
+
+        <h2>Current Queue</h2>
+
+        {% if values %}
+        <div class="nodes">
+            <span class="input-hint">Front</span>
+            {% for value in values %}
+            <div class="node">{{ value }}</div>
+            {% if not loop.last %}
+            <span class="arrow">→</span>
+            {% endif %}
+            {% endfor %}
+            <span class="input-hint">Rear</span>
+        </div>
+        {% else %}
+        <p class="empty-list">Your queue is currently empty.</p>
+        {% endif %}
+    </div>
+
+    <a href="{{ url_for('works') }}" class="back-link">Back to Works</a>
+</section>
+
+{% endblock %}

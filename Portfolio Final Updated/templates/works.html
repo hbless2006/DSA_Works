@@ -1,0 +1,64 @@
+
+{% extends "base.html" %}
+
+{% block title %}My Works{% endblock %}
+
+{% block content %}
+
+<section class="works-page">
+
+    <div class="works-heading">
+        <p class="small-title">MY PORTFOLIO COLLECTION</p>
+        <h1>My Works</h1>
+        <p>Explore my programming projects and activities.</p>
+    </div>
+
+    <div class="works-grid">
+
+        <a href="{{ url_for('uppercase') }}" class="work-card">
+            <div class="work-icon">Aa</div>
+            <h2>Uppercase Converter</h2>
+            <p>Convert lowercase text into uppercase letters.</p>
+            <span class="open-project">Open Project →</span>
+        </a>
+
+        <a href="{{ url_for('acircle') }}" class="work-card">
+            <div class="work-icon">◯</div>
+            <h2>Circle Area</h2>
+            <p>Calculate the area of a circle using its radius.</p>
+            <span class="open-project">Open Project →</span>
+        </a>
+
+        <a href="{{ url_for('atriangle') }}" class="work-card">
+            <div class="work-icon">△</div>
+            <h2>Triangle Area</h2>
+            <p>Calculate a triangle's area using its base and height.</p>
+            <span class="open-project">Open Project →</span>
+        </a>
+
+        <a href="{{ url_for('linkedlist') }}" class="work-card">
+            <div class="work-icon">⇄</div>
+            <h2>Linked List</h2>
+            <p>Insert, remove, and search for nodes.</p>
+            <span class="open-project">Open Project →</span>
+        </a>
+
+        <a href="{{ url_for('infix_postfix') }}" class="work-card">
+            <div class="work-icon">∑</div>
+            <h2>Infix to Postfix</h2>
+            <p>Convert mathematical expressions using a Stack.</p>
+            <span class="open-project">Open Project →</span>
+        </a>
+
+        <a href="{{ url_for('queue_demo') }}" class="work-card">
+            <div class="work-icon">Q</div>
+            <h2>Queue and Dequeue</h2>
+            <p>Add values to a queue and remove them in first-in, first-out order.</p>
+            <span class="open-project">Open Project</span>
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+
+{% extends "base.html" %}
+
+{% block title %}Uppercase Converter{% endblock %}
+
+{% block content %}
+
+<section class="card project-page">
+
+    <p class="small-title">TEXT TOOL</p>
+    <h1>Uppercase Converter</h1>
+
+    <p>Enter your text below to convert it into uppercase letters.</p>
+
+    <form method="POST">
+
+        <label for="inputString">Your text</label>
+
+        <input
+            type="text"
+            id="inputString"
+            name="inputString"
+            placeholder="Type something here..."
+            required
+        >
+
+        <button type="submit">Convert to Uppercase ✨</button>
+
+    </form>
+
+    {% if result is not none %}
+    <div class="result">
+        <h3>Your Result</h3>
+        <p>{{ result }}</p>
+    </div>
+    {% endif %}
+
+    <a href="{{ url_for('works') }}" class="back-link">
+        ← Back to Works
+    </a>
+
+</section>
+
+{% endblock %}

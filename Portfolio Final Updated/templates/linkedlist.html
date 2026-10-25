@@ -1,0 +1,125 @@
+
+{% extends "base.html" %}
+
+{% block title %}Linked List{% endblock %}
+
+{% block content %}
+
+<section class="linked-page">
+
+    <div class="linked-header">
+        <p class="small-title">DATA STRUCTURES</p>
+        <h1>Linked List</h1>
+        <p>Insert, remove, and search for nodes.</p>
+    </div>
+
+    <div class="linked-box">
+
+        <form method="POST">
+
+            <div class="linked-inputs">
+
+                <input
+                    type="text"
+                    name="value"
+                    placeholder="Value"
+                >
+
+                <input
+                    type="text"
+                    name="after"
+                    placeholder="After which node? (Insert After)"
+                >
+
+            </div>
+
+            <p class="input-hint">
+                Enter a value for insert, remove value, or search.
+                For Insert After, fill in both fields.
+            </p>
+
+            <div class="linked-buttons">
+
+                <button name="action" value="insert_beginning">
+                    Insert Beginning
+                </button>
+
+                <button name="action" value="insert_middle">
+                    Insert Middle
+                </button>
+
+                <button name="action" value="insert_end">
+                    Insert End
+                </button>
+
+                <button name="action" value="insert_after">
+                    Insert After
+                </button>
+
+                <button name="action" value="remove_beginning">
+                    Remove Beginning
+                </button>
+
+                <button name="action" value="remove_end">
+                    Remove End
+                </button>
+
+                <button name="action" value="remove_value">
+                    Remove Value
+                </button>
+
+                <button name="action" value="search">
+                    Search
+                </button>
+
+                <button name="action" value="clear">
+                    Clear List
+                </button>
+
+            </div>
+
+        </form>
+
+        {% if message %}
+        <div class="linked-message">
+            {{ message }}
+        </div>
+        {% endif %}
+
+        <h2>Current Linked List</h2>
+
+        {% if values %}
+
+        <div class="nodes">
+
+            {% for value in values %}
+
+            <div class="node">{{ value }}</div>
+
+            {% if not loop.last %}
+            <span class="arrow">→</span>
+            {% endif %}
+
+            {% endfor %}
+
+            <span class="arrow">→ NULL</span>
+
+        </div>
+
+        {% else %}
+
+        <p class="empty-list">
+            Your linked list is currently empty.
+        </p>
+
+        {% endif %}
+
+    </div>
+
+    <a href="{{ url_for('works') }}" class="back-link">
+        ← Back to Works
+    </a>
+
+</section>
+
+{% endblock %}

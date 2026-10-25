@@ -1,0 +1,38 @@
+
+{% extends "base.html" %}
+
+{% block title %}Welcome to My Portfolio{% endblock %}
+
+{% block content %}
+
+<section class="hero hero-animated">
+
+    <p class="small-title">Welcome to my Portfolio</p>
+
+    <h1 class="hero-title">
+        Hello, I'm <span>Hercy</span> ♡
+    </h1>
+
+    <h2>College Student · BSCPE 2-3</h2>
+
+    <p class="hero-description">This is where you can explore my projects and discover what I have been learning with a lot of Purple.</p>
+
+    <div class="hero-actions">
+        <a class="btn" href="{{ url_for('works') }}">
+            Explore My Works ✧
+        </a>
+
+        <a class="btn secondary-btn" href="{{ url_for('profile') }}">
+            Get to Know Me
+        </a>
+    </div>
+
+    <div class="welcome-note glass-panel">
+        <span>✧</span>
+        <p>A little creativity, a little code, and lots of lavender.</p>
+        <span>♡</span>
+    </div>
+
+</section>
+
+{% endblock %}

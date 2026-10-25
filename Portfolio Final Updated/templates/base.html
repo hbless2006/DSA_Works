@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="theme-color" content="#bba0df">
+
+    <title>{% block title %}My Lavender Portfolio{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="dream-background" aria-hidden="true">
+        <div class="glow-orb orb-one"></div>
+        <div class="glow-orb orb-two"></div>
+        <div class="glow-orb orb-three"></div>
+        <div class="sparkle sparkle-one">✦</div>
+        <div class="sparkle sparkle-two">✧</div>
+        <div class="sparkle sparkle-three">✦</div>
+        <div class="sparkle sparkle-four">✧</div>
+        <div class="sparkle sparkle-five">✦</div>
+    </div>
+
+    <nav class="navbar">
+        <a class="brand" href="{{ url_for('index') }}">
+            ♕ Hiers Portfolio
+        </a>
+
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('profile') }}">Profile</a>
+            <a href="{{ url_for('works') }}">Works</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        made with ♡ and a little lavender magic
+    </footer>
+
+
+    
+
+    <audio id="ambientAudio" preload="metadata"></audio>
+
+<section class="music-player glass-panel" aria-label="Music player">
+    <div class="music-topline">
+        <span class="music-indicator" aria-hidden="true"></span>
+        <span class="music-heading">Music</span>
+        <span class="music-status" id="musicStatus">Ready to play</span>
+    </div>
+
+    <div class="music-details">
+        <strong id="musicTitle">Eight</strong>
+    </div>
+
+    <div class="music-progress-row">
+        <span id="musicCurrentTime">0:00</span>
+        <input id="musicProgress" type="range" min="0" max="100" value="0" aria-label="Track position">
+        <span id="musicDuration">0:00</span>
+    </div>
+
+    <div class="music-controls">
+        <button id="musicPrevious" class="music-skip" type="button" aria-label="Previous track">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 5 8 12l11 7z"/></svg>
+        </button>
+        <button id="musicToggle" class="music-play" type="button" aria-label="Play music">
+            <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM15 5h4v14h-4z"/></svg>
+        </button>
+        <button id="musicNext" class="music-skip" type="button" aria-label="Next track">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 5l11 7-11 7z"/></svg>
+        </button>
+        <label class="volume-control" aria-label="Volume">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4zm12-2a5 5 0 0 1 0 8m2-11a9 9 0 0 1 0 14"/></svg>
+            <input id="musicVolume" type="range" min="0" max="1" step="0.05" value="0.35" aria-label="Volume">
+        </label>
+    </div>
+</section>
+
+<div id="musicTracks" hidden>
+    <div data-title="Eight" data-file="Eight.mp3" data-description="A breezy track for a light and easy listen."></div>
+    <div data-title="Golden Hour" data-file="Golden Hour.mp3" data-description="A dreamy soundtrack for a soft golden-hour mood."></div>
+    <div data-title="Lilac" data-file="Lilac.mp3" data-description="A gentle, mellow track with a lilac-soft mood."></div>
+    <div data-title="Na Para Bang" data-file="Na Para Bang.mp3" data-description="A mellow Filipino music pick for a reflective moment."></div>
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
