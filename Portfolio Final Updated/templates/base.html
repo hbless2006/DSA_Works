@@ -10,7 +10,7 @@
     <title>{% block title %}My Lavender Portfolio{% endblock %}</title>
 
     <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+          href="{{ url_for('static', filename='style.css') }}?v=profile-redesign">
 </head>
 
 <body>
@@ -52,11 +52,15 @@
 
     <audio id="ambientAudio" preload="metadata"></audio>
 
-<section class="music-player glass-panel" aria-label="Music player">
+<section class="music-player glass-panel is-minimized" aria-label="Music player">
+    <button id="musicLauncher" class="music-launcher" type="button" aria-label="Open music player" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l12-2v13M9 18a3 3 0 1 1-3-3 3 3 0 0 1 3 3zm12-2a3 3 0 1 1-3-3 3 3 0 0 1 3 3z"/></svg>
+    </button>
     <div class="music-topline">
         <span class="music-indicator" aria-hidden="true"></span>
         <span class="music-heading">Music</span>
         <span class="music-status" id="musicStatus">Ready to play</span>
+        <button id="musicMinimize" class="music-minimize" type="button" aria-label="Minimize music player">−</button>
     </div>
 
     <div class="music-details">
@@ -88,12 +92,14 @@
 </section>
 
 <div id="musicTracks" hidden>
-    <div data-title="Eight" data-file="Eight.mp3" data-description="A breezy track for a light and easy listen."></div>
-    <div data-title="Golden Hour" data-file="Golden Hour.mp3" data-description="A dreamy soundtrack for a soft golden-hour mood."></div>
-    <div data-title="Lilac" data-file="Lilac.mp3" data-description="A gentle, mellow track with a lilac-soft mood."></div>
-    <div data-title="Na Para Bang" data-file="Na Para Bang.mp3" data-description="A mellow Filipino music pick for a reflective moment."></div>
+    <div data-title="Ambient" data-file="ambient.mp3"></div>
+    <div data-title="Ain't in LA" data-file="Aint In LA.mp3"></div>
+    <div data-title="Bugambilya" data-file="Bugambilya.mp3"></div>
+    <div data-title="Celebrity" data-file="Celebrity.mp3"></div>
+    <div data-title="Love Scenario" data-file="Love Scenario.mp3"></div>
+    <div data-title="Mahal Magmahal" data-file="Mahal Magmahal.mp3"></div>
 </div>
-<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script src="{{ url_for('static', filename='script.js') }}?v=portfolio-restore"></script>
 
 </body>
 </html>

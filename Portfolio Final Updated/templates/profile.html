@@ -1,78 +1,59 @@
 {% extends "base.html" %}
 
-
-{% block title %}
-My Profile
-{% endblock %}
-
+{% block title %}My Profile{% endblock %}
 
 {% block content %}
+<section class="profile-page">
+    <div class="profile-page-sparkle profile-sparkle-one" aria-hidden="true">✦</div>
+    <div class="profile-page-sparkle profile-sparkle-two" aria-hidden="true">✧</div>
 
-<section class="profile-card">
+    <div class="profile-portrait-wrap">
+        <div class="profile-portrait-halo" aria-hidden="true"></div>
+        <img
+            src="{{ url_for('static', filename='profile.jpg') }}"
+            alt="Hercy Bless C. Vilan at a lantern-lit display"
+            class="profile-portrait"
+        >
+    </div>
 
-    <img
-        src="{{ url_for('static', filename='profile.jpg') }}"
-        alt="My Profile Picture"
-        class="profile-image"
-    >
+    <div class="profile-intro-panel">
+        <p class="profile-eyebrow"><span>✦</span> ABOUT ME <span>✦</span></p>
+        <h1>Hercy Bless C. Vilan</h1>
+        <div class="profile-divider" aria-hidden="true"><span>✧</span></div>
+        <p class="profile-intro">
+            A second-year Computer Engineering student who loves learning,
+            creating, and exploring new things. <span aria-hidden="true">♡</span>
+        </p>
+    </div>
 
+    <div class="profile-details-grid">
+        <article class="profile-detail-card profile-course-card">
+            <span class="profile-detail-icon" aria-hidden="true">✿</span>
+            <p class="profile-detail-label">MY COURSE</p>
+            <h2>Computer Engineering</h2>
+            <p>Bachelor of Science in Computer Engineering</p>
+            <span class="profile-detail-note">PUP · BSCPE 2-3</span>
+        </article>
 
-    <p class="small-title">
-        ABOUT ME
-    </p>
+        <article class="profile-detail-card profile-skills-card">
+            <span class="profile-detail-icon" aria-hidden="true">✧</span>
+            <p class="profile-detail-label">THINGS I ENJOY</p>
+            <h2>My Skills &amp; Interests</h2>
+            <ul class="profile-skill-list">
+                <li>Crafting</li>
+                <li>Designing</li>
+                <li>Basic Python</li>
+                <li>Graphics Design</li>
+                <li>Gaming</li>
+            </ul>
+        </article>
 
-
-    <h1>
-        My Profile
-    </h1>
-
-
-    <h2>
-        Hercy Bless C. Vilan
-    </h2>
-
-
-    <p>
-        Hello! My name is Hercy Bless C. Vilan
-        from BSCPE 2-3. I am a second year student
-        at the Polytechnic University of the Philippines.
-    </p>
-
-
-    <h3>
-        My Course
-    </h3>
-
-    <p>
-        Bachelor of Science in Computer Engineering
-    </p>
-
-
-    <h3>
-        My Skills
-    </h3>
-
-    <ul>
-
-        <li>Crafting</li>
-        <li>Designing</li>
-        <li>Basic Python</li>
-        <li>Graphics Design</li>
-        <li>Gaming</li>
-
-    </ul>
-
-
-    <h3>
-        My Goal
-    </h3>
-
-    <p>
-        My goal is to improve my programming skills
-        and create useful and user-friendly
-        applications.
-    </p>
-
+        <article class="profile-detail-card profile-goal-card">
+            <span class="profile-detail-icon" aria-hidden="true">♡</span>
+            <p class="profile-detail-label">LOOKING AHEAD</p>
+            <h2>My Goal</h2>
+            <p>To keep improving my programming skills and create useful, friendly applications that make someone’s day a little easier.</p>
+        </article>
+    </div>
 </section>
-
 {% endblock %}

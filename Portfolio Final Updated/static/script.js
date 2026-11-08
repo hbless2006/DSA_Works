@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     const audio = document.getElementById("ambientAudio");
     const player = document.querySelector(".music-player");
+    const launcher = document.getElementById("musicLauncher");
+    const minimize = document.getElementById("musicMinimize");
     const toggle = document.getElementById("musicToggle");
     const previous = document.getElementById("musicPrevious");
     const next = document.getElementById("musicNext");
@@ -15,6 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
             title: item.dataset.title,
             file: item.dataset.file
         }));
+
+    function setPlayerMinimized(minimized) {
+        player.classList.toggle("is-minimized", minimized);
+        launcher.setAttribute("aria-expanded", String(!minimized));
+    }
+
+    launcher.addEventListener("click", () => setPlayerMinimized(false));
+    minimize.addEventListener("click", () => setPlayerMinimized(true));
 
     let currentTrack = 0;
     let pendingRestore = null;

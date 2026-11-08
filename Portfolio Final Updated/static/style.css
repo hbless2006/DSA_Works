@@ -824,9 +824,20 @@ footer {
     gap: 12px;
 }
 
-.linked-inputs input {
+.linked-inputs input,
+.linked-inputs select {
     min-width: 0;
     margin: 0;
+}
+
+.linked-inputs select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid rgba(126, 88, 160, 0.5);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.7);
+    color: #4b3b63;
+    font-family: Georgia, serif;
 }
 
 .input-hint {
@@ -1471,10 +1482,64 @@ button {
     -webkit-backdrop-filter: blur(18px);
 }
 
+.music-launcher {
+    display: none;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg, #c6a6eb, #8965b5);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 8px 22px rgba(73, 47, 99, 0.25);
+}
+
+.music-launcher svg {
+    width: 25px;
+    height: 25px;
+    fill: currentColor;
+}
+
+.music-player.is-minimized {
+    width: 58px;
+    height: 58px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+}
+
+.music-player.is-minimized .music-launcher {
+    display: grid;
+}
+
+.music-player.is-minimized > :not(.music-launcher) {
+    display: none;
+}
+
 .music-topline {
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+.music-minimize {
+    display: grid;
+    place-items: center;
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(195, 171, 222, 0.25);
+    color: #755493;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
 }
 
 .music-indicator {
@@ -1638,6 +1703,10 @@ button {
         left: 10px;
         bottom: 10px;
         width: min(340px, calc(100vw - 20px));
+    }
+
+    .music-player.is-minimized {
+        width: 58px;
     }
 }
 
@@ -1848,8 +1917,272 @@ button {
         grid-template-columns: 1fr;
         gap: 14px;
     }
-
     .contact-card {
         min-height: 185px;
+    }
+}
+
+.profile-page {
+        position: relative;
+        max-width: 940px;
+        margin: 0 auto;
+        padding: 18px 0 42px;
+        text-align: center;
+    }
+
+    .profile-page-sparkle {
+        position: absolute;
+        z-index: 1;
+        color: rgba(255, 255, 255, 0.9);
+        text-shadow: 0 0 18px rgba(153, 111, 196, 0.75);
+        pointer-events: none;
+    }
+
+    .profile-sparkle-one {
+        top: 125px;
+        left: 7%;
+        font-size: 30px;
+    }
+
+    .profile-sparkle-two {
+        top: 215px;
+        right: 8%;
+        font-size: 38px;
+    }
+
+    .profile-portrait-wrap {
+        position: relative;
+        z-index: 2;
+        width: min(310px, 72vw);
+        margin: 0 auto -44px;
+    }
+
+    .profile-portrait-halo {
+        position: absolute;
+        inset: -12px;
+        border: 2px solid rgba(255, 255, 255, 0.88);
+        border-radius: 50%;
+        box-shadow:
+            0 0 0 8px rgba(219, 194, 242, 0.34),
+            0 0 40px rgba(255, 255, 255, 0.65);
+    }
+
+    .profile-portrait {
+        position: relative;
+        display: block;
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        object-position: 58% center;
+        border: 7px solid rgba(255, 255, 255, 0.94);
+        border-radius: 50%;
+        box-shadow: 0 16px 38px rgba(73, 47, 99, 0.3);
+    }
+
+    .profile-photo-caption {
+        position: absolute;
+        right: -24px;
+        bottom: 20px;
+        padding: 9px 14px;
+        border: 1px solid rgba(255, 255, 255, 0.86);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.83);
+        color: #765394;
+        font-size: 12px;
+        box-shadow: 0 6px 18px rgba(73, 47, 99, 0.13);
+        transform: rotate(4deg);
+    }
+
+    .profile-intro-panel {
+        position: relative;
+        padding: 66px 28px 30px;
+        border: 1px solid rgba(255, 255, 255, 0.84);
+        border-radius: 30px;
+        background:
+            radial-gradient(ellipse at 50% 0, rgba(255, 255, 255, 0.9), transparent 68%),
+            rgba(255, 255, 255, 0.51);
+        box-shadow: 0 18px 48px rgba(73, 47, 99, 0.16);
+        backdrop-filter: blur(18px);
+    }
+
+    .profile-eyebrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin: 0 0 10px;
+        color: #8d68b1;
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 0.2em;
+    }
+
+    .profile-eyebrow span {
+        color: #bd94dd;
+        font-size: 15px;
+    }
+
+    .profile-intro-panel h1 {
+        margin: 0;
+        color: #68428d;
+        font-family: "Brush Script MT", "Segoe Script", cursive;
+        font-size: clamp(38px, 7vw, 62px);
+        font-style: italic;
+        font-weight: 500;
+        line-height: 1.15;
+    }
+
+    .profile-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        width: min(270px, 80%);
+        margin: 12px auto;
+        color: #9c74bf;
+    }
+
+    .profile-divider::before,
+    .profile-divider::after {
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #ad89d0);
+        content: "";
+    }
+
+    .profile-divider::after {
+        background: linear-gradient(90deg, #ad89d0, transparent);
+    }
+
+    .profile-intro {
+        max-width: 620px;
+        margin: 0 auto;
+        color: #72558a;
+        font-size: clamp(16px, 2.5vw, 19px);
+        font-style: italic;
+        line-height: 1.65;
+    }
+
+    .profile-intro span {
+        color: #a56fc0;
+        font-style: normal;
+    }
+
+    .profile-details-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 20px;
+        text-align: left;
+    }
+
+    .profile-detail-card {
+        position: relative;
+        padding: 22px 24px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.75);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.53);
+        box-shadow: 0 10px 26px rgba(73, 47, 99, 0.11);
+        backdrop-filter: blur(14px);
+    }
+
+    .profile-detail-card:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .profile-detail-icon {
+        position: absolute;
+        top: 14px;
+        right: 18px;
+        color: rgba(153, 111, 190, 0.55);
+        font-size: 27px;
+    }
+
+    .profile-detail-label {
+        margin: 0 0 7px;
+        color: #9674b1;
+        font-size: 10px;
+        font-weight: bold;
+        letter-spacing: 0.16em;
+    }
+
+    .profile-detail-card h2 {
+        margin: 0 24px 9px 0;
+        color: #684b82;
+        font-size: 20px;
+    }
+
+    .profile-detail-card > p:not(.profile-detail-label) {
+        margin: 0;
+        color: #755e88;
+        font-size: 14px;
+        line-height: 1.65;
+    }
+
+    .profile-detail-note {
+        display: inline-block;
+        margin-top: 13px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(202, 177, 225, 0.31);
+        color: #785b95;
+        font-size: 11px;
+        font-weight: bold;
+    }
+
+    .profile-skill-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin: 13px 0 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .profile-skill-list li {
+        padding: 7px 10px;
+        border: 1px solid rgba(177, 145, 207, 0.32);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.57);
+        color: #76568f;
+        font-size: 12px;
+    }
+
+@media (max-width: 650px) {
+    .profile-page {
+        padding-top: 8px;
+    }
+
+    .profile-portrait-wrap {
+        width: min(250px, 68vw);
+        margin-bottom: -34px;
+    }
+
+    .profile-intro-panel {
+        padding: 54px 19px 24px;
+        border-radius: 24px;
+    }
+
+    .profile-photo-caption {
+        right: -14px;
+        bottom: 14px;
+        font-size: 10px;
+    }
+
+    .profile-sparkle-one {
+        left: 0;
+    }
+
+    .profile-sparkle-two {
+        right: 0;
+    }
+
+    .profile-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-detail-card:last-child {
+        grid-column: auto;
     }
 }

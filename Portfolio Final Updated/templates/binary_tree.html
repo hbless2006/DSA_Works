@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Binary Search Tree{% endblock %}
+
+{% block content %}
+<section class="linked-page">
+    <div class="linked-header">
+        <p class="small-title">DATA STRUCTURES</p>
+        <h1>Binary Search Tree</h1>
+        <p>Insert, search, delete, and view a post-order traversal.</p>
+    </div>
+
+    <div class="linked-box">
+        <form method="POST">
+            <div class="linked-inputs">
+                <input
+                    type="number"
+                    name="value"
+                    value="{{ value }}"
+                    placeholder="Whole number"
+                    aria-label="Whole number"
+                >
+            </div>
+            <p class="input-hint">Values are placed in binary-search-tree order. Duplicate values are ignored.</p>
+
+            <div class="linked-buttons">
+                <button type="submit" name="action" value="insert">Insert</button>
+                <button type="submit" name="action" value="search">Search</button>
+                <button type="submit" name="action" value="delete">Delete</button>
+                <button type="submit" name="action" value="postorder">Post-order Traversal</button>
+                <button type="submit" name="action" value="clear">Clear Tree</button>
+            </div>
+        </form>
+
+        {% if message %}
+        <div class="linked-message" aria-live="polite">{{ message }}</div>
+        {% endif %}
+
+        {% if error %}
+        <div class="error" role="alert">{{ error }}</div>
+        {% endif %}
+
+        <h2>Tree Values (In-order)</h2>
+        {% if values %}
+        <div class="nodes">
+            {% for item in values %}
+            <div class="node">{{ item }}</div>
+            {% endfor %}
+        </div>
+        <p class="input-hint">In-order traversal displays the values from smallest to largest.</p>
+        {% else %}
+        <p class="empty-list">The tree is empty. Insert a whole number to get started.</p>
+        {% endif %}
+
+        {% if postorder is not none %}
+        <h2>Post-order Traversal</h2>
+        {% if postorder %}
+        <div class="nodes">
+            {% for item in postorder %}
+            <div class="node">{{ item }}</div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="empty-list">The tree is empty, so there are no values to traverse.</p>
+        {% endif %}
+        {% endif %}
+    </div>
+
+    <a href="{{ url_for('works') }}" class="back-link">← Back to Works</a>
+</section>
+{% endblock %}

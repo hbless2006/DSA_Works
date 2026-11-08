@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Sorting{% endblock %}
+
+{% block content %}
+<section class="linked-page">
+    <div class="linked-header">
+        <p class="small-title">ALGORITHMS</p>
+        <h1>Sorting</h1>
+        <p>Try five algorithms and compare their output.</p>
+    </div>
+
+    <div class="linked-box">
+        <form method="POST">
+            <label for="numbers">Whole numbers</label>
+            <input
+                type="text"
+                id="numbers"
+                name="numbers"
+                value="{{ numbers }}"
+                placeholder="Example: 8, 3, 5, 1"
+                required
+            >
+            <p class="input-hint">Separate values with commas or spaces (up to 100).</p>
+
+            <div class="linked-inputs">
+                <div>
+                    <label for="algorithm">Algorithm</label>
+                    <select id="algorithm" name="algorithm">
+                        <option value="bubble" {% if algorithm == "bubble" %}selected{% endif %}>Bubble Sort</option>
+                        <option value="selection" {% if algorithm == "selection" %}selected{% endif %}>Selection Sort</option>
+                        <option value="insertion" {% if algorithm == "insertion" %}selected{% endif %}>Insertion Sort</option>
+                        <option value="merge" {% if algorithm == "merge" %}selected{% endif %}>Merge Sort</option>
+                        <option value="quick" {% if algorithm == "quick" %}selected{% endif %}>Quick Sort</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="order">Order</label>
+                    <select id="order" name="order">
+                        <option value="ascending" {% if not descending %}selected{% endif %}>Ascending</option>
+                        <option value="descending" {% if descending %}selected{% endif %}>Descending</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="linked-buttons">
+                <button type="submit">Sort Numbers</button>
+            </div>
+        </form>
+
+        {% if result is not none %}
+        <div class="linked-message" aria-live="polite">
+            <p><strong>Input:</strong> {{ numbers }}</p>
+            <p><strong>Sorted output:</strong> {{ result | join(", ") }}</p>
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <div class="error" role="alert">{{ error }}</div>
+        {% endif %}
+
+        <h2>About the Algorithms</h2>
+        <p class="input-hint">Bubble, selection, and insertion sort are simple O(n²) methods. Merge sort runs in O(n log n). Quick sort is O(n log n) on average.</p>
+    </div>
+
+    <a href="{{ url_for('works') }}" class="back-link">← Back to Works</a>
+</section>
+{% endblock %}

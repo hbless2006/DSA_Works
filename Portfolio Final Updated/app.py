@@ -209,8 +209,68 @@ class LinkedList:
         return values
 
 
+class TreeNode:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+
+class BinarySearchTree:
+    def __init__(self):
+        self.root = None
+
+    def insert(self, root, key):
+        if root is None:
+            return TreeNode(key)
+        if key < root.data:
+            root.left = self.insert(root.left, key)
+        elif key > root.data:
+            root.right = self.insert(root.right, key)
+        return root
+
+    def search(self, root, key):
+        if root is None or root.data == key:
+            return root
+        if key < root.data:
+            return self.search(root.left, key)
+        return self.search(root.right, key)
+
+    def post_traversal(self, start, traversal):
+        if start is not None:
+            self.post_traversal(start.left, traversal)
+            self.post_traversal(start.right, traversal)
+            traversal.append(start.data)
+        return traversal
+
+    def delete_node(self, root, key):
+        if root is None:
+            return None
+        if key < root.data:
+            root.left = self.delete_node(root.left, key)
+        elif key > root.data:
+            root.right = self.delete_node(root.right, key)
+        elif root.left is None:
+            return root.right
+        elif root.right is None:
+            return root.left
+        else:
+            successor = root.right
+            while successor.left is not None:
+                successor = successor.left
+            root.data = successor.data
+            root.right = self.delete_node(root.right, successor.data)
+        return root
+
+    def in_order(self, start):
+        if start is None:
+            return []
+        return self.in_order(start.left) + [start.data] + self.in_order(start.right)
+
+
 linked_list = LinkedList()
 queue_items = deque()
+binary_tree = BinarySearchTree()
 
 
 @app.route("/works/linkedlist", methods=["GET", "POST"])
@@ -318,6 +378,168 @@ def queue_demo():
         values=list(queue_items),
         message=message
     )
+
+
+@app.route("/works/binary-tree", methods=["GET", "POST"])
+def binary_tree_demo():
+    message = None
+    error = None
+    value = request.form.get("value", "").strip()
+    postorder = None
+
+    if request.method == "POST":
+        action = request.form.get("action")
+        if action == "clear":
+            binary_tree.root = None
+            message = "Binary search tree cleared."
+        elif action == "postorder":
+            postorder = binary_tree.post_traversal(binary_tree.root, [])
+            message = "Post-order traversal completed."
+        elif action in {"insert", "search", "delete"}:
+            try:
+                key = int(value)
+            except ValueError:
+                error = "Enter a valid whole number."
+            else:
+                found = binary_tree.search(binary_tree.root, key)
+                if action == "insert":
+                    if found:
+                        message = f"{key} is already in the tree."
+                    elif len(binary_tree.in_order(binary_tree.root)) >= 100:
+                        error = "The tree can contain no more than 100 values."
+                    else:
+                        binary_tree.root = binary_tree.insert(binary_tree.root, key)
+                        message = f"Inserted {key} into the tree."
+                elif action == "search":
+                    message = (
+                        f"{key} was found in the tree."
+                        if found else f"{key} was not found in the tree."
+                    )
+                elif found:
+                    binary_tree.root = binary_tree.delete_node(binary_tree.root, key)
+                    message = f"Deleted {key} from the tree."
+                else:
+                    message = f"{key} was not found in the tree."
+
+    return render_template(
+        "binary_tree.html",
+        values=binary_tree.in_order(binary_tree.root),
+        value=value,
+        postorder=postorder,
+        message=message,
+        error=error
+    )
+
+
+def sort_numbers(values, algorithm, descending=False):
+    items = values.copy()
+    direction = -1 if descending else 1
+
+    def compare(left, right):
+        return direction * (left - right)
+
+    if algorithm == "bubble":
+        for end in range(len(items) - 1, 0, -1):
+            swapped = False
+            for index in range(end):
+                if compare(items[index], items[index + 1]) > 0:
+                    items[index], items[index + 1] = items[index + 1], items[index]
+                    swapped = True
+            if not swapped:
+                break
+    elif algorithm == "selection":
+        for start in range(len(items) - 1):
+            selected = start
+            for index in range(start + 1, len(items)):
+                if compare(items[index], items[selected]) < 0:
+                    selected = index
+            items[start], items[selected] = items[selected], items[start]
+    elif algorithm == "insertion":
+        for index in range(1, len(items)):
+            value = items[index]
+            position = index - 1
+            while position >= 0 and compare(items[position], value) > 0:
+                items[position + 1] = items[position]
+                position -= 1
+            items[position + 1] = value
+    elif algorithm == "merge":
+        def merge_sort(values_to_sort):
+            if len(values_to_sort) <= 1:
+                return values_to_sort
+            middle = len(values_to_sort) // 2
+            left = merge_sort(values_to_sort[:middle])
+            right = merge_sort(values_to_sort[middle:])
+            merged = []
+            left_index = 0
+            right_index = 0
+            while left_index < len(left) and right_index < len(right):
+                if compare(left[left_index], right[right_index]) <= 0:
+                    merged.append(left[left_index])
+                    left_index += 1
+                else:
+                    merged.append(right[right_index])
+                    right_index += 1
+            return merged + left[left_index:] + right[right_index:]
+
+        items = merge_sort(items)
+    elif algorithm == "quick":
+        def quick_sort(low, high):
+            if low >= high:
+                return
+            pivot = items[(low + high) // 2]
+            left, right = low, high
+            while left <= right:
+                while compare(items[left], pivot) < 0:
+                    left += 1
+                while compare(items[right], pivot) > 0:
+                    right -= 1
+                if left <= right:
+                    items[left], items[right] = items[right], items[left]
+                    left += 1
+                    right -= 1
+            quick_sort(low, right)
+            quick_sort(left, high)
+
+        quick_sort(0, len(items) - 1)
+    else:
+        raise ValueError("Please choose a valid sorting algorithm.")
+    return items
+
+
+@app.route("/works/sorting", methods=["GET", "POST"])
+def sorting_lab():
+    numbers = "8, 3, 5, 1, 9, 2"
+    algorithm = "bubble"
+    descending = False
+    result = None
+    error = None
+
+    if request.method == "POST":
+        numbers = request.form.get("numbers", "").strip()
+        algorithm = request.form.get("algorithm", "bubble")
+        descending = request.form.get("order") == "descending"
+        tokens = numbers.replace(",", " ").split()
+        if not tokens:
+            error = "Enter at least one whole number."
+        elif len(tokens) > 100:
+            error = "For this demo, enter no more than 100 numbers."
+        elif algorithm not in {"bubble", "selection", "insertion", "merge", "quick"}:
+            error = "Please choose a valid sorting algorithm."
+        else:
+            try:
+                result = sort_numbers([int(token) for token in tokens], algorithm, descending)
+            except ValueError:
+                error = "Use whole numbers separated by commas or spaces."
+
+    return render_template(
+        "sorting.html",
+        numbers=numbers,
+        algorithm=algorithm,
+        descending=descending,
+        result=result,
+        error=error
+    )
+
 
 precedence = {
     "+": 1,
